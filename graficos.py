@@ -3,20 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import io
 
-# Paste evaluation results here
-results_text = """
-Modelo                                  AUROC               AP         F1-Score
-AdaSSA_Full_Model       0.9614 ± 0.0002  0.7154 ± 0.0250  0.8528 ± 0.0084
-AdaSSA_dynamic_masking  0.9510 ± 0.0003  0.6592 ± 0.0114  0.8372 ± 0.0026
-AdaSSA_inject_noise     0.9596 ± 0.0002  0.7013 ± 0.0111  0.8475 ± 0.0024
-Attention_None          0.9537 ± 0.0002  0.7013 ± 0.0111  0.8454 ± 0.0024
-Attention_Softmax       0.9541 ± 0.0002  0.6995 ± 0.0112  0.8326 ± 0.0025
-Attn_Entmax15           0.9389 ± 0.0003  0.6313 ± 0.0114  0.8089 ± 0.0026
-Attn_Sparsemax          0.9468 ± 0.0003  0.6599 ± 0.0112  0.8205 ± 0.0027
-Base_AE                 0.9488 ± 0.0002  0.6803 ± 0.0113  0.8348 ± 0.0025
-"""
+results_text = ""
 
-# Name mapping and plot order
 model_name_map = {
     'AdaSSA_Full_Model': 'Full Model',
     'AdaSSA_dynamic_masking': 'w/o Dyn. Masking',
@@ -28,7 +16,6 @@ model_name_map = {
     'Base_AE': 'Base AE'
 }
 
-# Model order in the plot (bottom to top)
 plot_order = [
     'Full Model',
     'w/o Dyn. Masking',
@@ -79,7 +66,7 @@ def plot_ablation_study(df, metric, ax, full_model_score):
         ax.text(mean + err + offset, i, annotation, 
                 va='center', ha='left', fontsize=10, color='darkred', fontweight='bold')
 
-    ax.invert_yaxis() # Modelo base no topo, completo na base
+    ax.invert_yaxis()
     ax.grid(axis='x', linestyle='--', alpha=0.6)
 
     for label in ax.get_xticklabels() + ax.get_yticklabels():
@@ -92,14 +79,14 @@ def plot_ablation_study(df, metric, ax, full_model_score):
 
 
 color_map = {
-    'Full Model': '#485460',        # Dark Slate Gray/Blue
-    'w/o Dyn. Masking': '#c39bd3',   # Medium Lavender
-    'w/o Noise': '#f1948a',         # Light Coral
-    'w/o Attention': '#f0b27a',     # Medium Peach
-    'Attn: Softmax': '#82e0aa',      # Medium Mint Green
-    'Attn: Entmax1.5': '#76d7c4',    # Medium Teal
-    'Attn: Sparsemax': '#73c6b6',    # Medium Aqua/Teal
-    'Base AE': '#85c1e9'            # Medium Steel Blue
+    'Full Model': '#485460',
+    'w/o Dyn. Masking': '#c39bd3',
+    'w/o Noise': '#f1948a',
+    'w/o Attention': '#f0b27a',
+    'Attn: Softmax': '#82e0aa',
+    'Attn: Entmax1.5': '#76d7c4',
+    'Attn: Sparsemax': '#73c6b6',
+    'Base AE': '#85c1e9'
 }
 
 if __name__ == "__main__":
@@ -125,6 +112,3 @@ if __name__ == "__main__":
     fig_f1.tight_layout()
     fig_f1.savefig(output_f1, format='pdf', dpi=300, bbox_inches='tight')
     print(f"F1-Score plot saved to '{output_f1}'.")
-
-    # Optional: display the plots
-    # plt.show()

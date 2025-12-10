@@ -10,7 +10,6 @@ import torch
 from pathlib import Path
 
 def set_seed(seed):
-    """Define sementes para reprodutibilidade"""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -45,18 +44,7 @@ PROJECT_ROOT = SCRIPT_DIR.parent
 DATASETS_DIR = Path('/mnt/hdd/gpcc/datasets/cic-ids-2017/tabular')
 
 DATASETS = [
-    #'nusw-nb15_normal_and_DoS.csv'
-    #'dataset_benign_and_ddos_attack_hoic.csv',
     'cic-ids-2017-dos-hulk.csv'
-    #'cic-ids-2017-ddos.csv'
-    
-    #'dataset_benign_and_ftp-bruteforce.csv'
-    #'nusw-nb15-dos.csv'
-    #'nusw-nb15.csv',
-
-    #'dataset_benign_and_ftp-bruteforce.csv'
-    #'cic-ids-2017-ddos.csv'
-    #'nusw-nb15-dos.csv'
 ]
 
 def parse_consolidated_results(output):
